@@ -1,10 +1,20 @@
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
+from fastapi.middleware.cors import CORSMiddleware
 from typing import List
 from . import models, schemas, crud
 from .database import async_session, database, engine
 
 app = FastAPI()
+
+# Configuração do middleware CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"], # Podemos adicionar outras origems que possam fazer um request
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.on_event("startup")
 async def startup():
