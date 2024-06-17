@@ -7,7 +7,6 @@ function App() {
   useEffect(() => {
     axios.get('http://localhost:8000/items/')
       .then(response => {
-        console.log(response.data);
         setItems(response.data);
       })
       .catch(error => {
