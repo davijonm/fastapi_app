@@ -11,7 +11,7 @@ async def get_items(db: AsyncSession, skip: int = 0, limit: int = 10):
     return result.scalars().all()
 
 async def create_item(db: AsyncSession, item: schemas.ItemCreate):
-    db_item = models.Item(name=item.name, description=item.description)
+    db_item = models.Item(**item.dict())
     db.add(db_item)
     await db.commit()
     await db.refresh(db_item)

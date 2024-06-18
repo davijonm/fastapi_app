@@ -4,9 +4,8 @@ class ItemBase(BaseModel):
     name: str
     description: str
 
-class ItemCreate(BaseModel):
-    name: str
-    description: str
+class ItemCreate(ItemBase):
+    pass
 
 class Item(ItemBase):
     id: int
